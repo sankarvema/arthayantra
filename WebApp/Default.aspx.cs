@@ -18,5 +18,8 @@ public partial class _Default : System.Web.UI.Page
     {
         accDetails.AccountId = e.AccountId;
         accDetails.ShowAccount();
+
+        accLedger.AccountId = e.AccountId;
+        accLedger.ShowAccount();
     }
 }

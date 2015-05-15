@@ -17,13 +17,13 @@ public partial class UserControls_AccountDetails : System.Web.UI.UserControl
     string constr = string.Empty;
     string accId;
     
-    private Account currAcc
+    private AccountEntity currAcc
     {
-        get { return (Account)Cache["CurrentAccount"]; }
+        get { return (AccountEntity)Cache["CurrentAccount"]; }
         set { Cache["CurrentAccount"] = value; }
     }
 
-    Account newAcc = null;
+    AccountEntity newAcc = null;
 
     private OperationMode opMode = OperationMode.None;
     #endregion
@@ -60,7 +60,7 @@ public partial class UserControls_AccountDetails : System.Web.UI.UserControl
         set
         {
             accId = value;
-            currAcc = new Account(accId);
+            currAcc = new AccountEntity(accId);
         }
     }
     #endregion
@@ -100,8 +100,8 @@ public partial class UserControls_AccountDetails : System.Web.UI.UserControl
 
     protected void imgbtnNew_Click(object sender, ImageClickEventArgs e)
     {
-        Account tempAcc = currAcc;
-        currAcc = new Account();
+        AccountEntity tempAcc = currAcc;
+        currAcc = new AccountEntity();
         currAcc.ParentAccountId = tempAcc.AccountId;
         currAcc.AccountCategory = tempAcc.AccountCategory;
 

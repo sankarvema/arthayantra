@@ -10,7 +10,7 @@ using System.Data;
 /// Summary description for Account
 /// </summary>
 
-public class Account
+public class AccountEntity
 {
     private string constr = ConfigurationManager.ConnectionStrings["fasdb"].ConnectionString;
 
@@ -62,12 +62,12 @@ public class Account
 
     private bool isDirty = true;
 
-    public Account()
+    public AccountEntity()
     {
         isDirty = true;
     }
 
-    public Account(string accId)
+    public AccountEntity(string accId)
     {
         accountId = accId;
         ReadAccount();
@@ -110,7 +110,7 @@ public class Account
         isDirty = false;
     }
 
-    public Account GetAccount(string accId)
+    public AccountEntity GetAccount(string accId)
     {
         if (isDirty)
         {
@@ -121,9 +121,9 @@ public class Account
         return this;
     }
 
-    public Account GetParentAccount()
+    public AccountEntity GetParentAccount()
     {
-        return (new Account(this.parentAccountId));
+        return (new AccountEntity(this.parentAccountId));
     }
 
     public void CreateAccount()

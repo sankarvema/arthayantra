@@ -32,7 +32,20 @@ public static class  Extensions
         if (reader.IsDBNull(reader.GetOrdinal(columnName)))
             return string.Empty;
 
-        return reader.GetString(reader.GetOrdinal(columnName)) as string ?? string.Empty;
-    }
+        string dataType = reader.GetDataTypeName(reader.GetOrdinal(columnName));
 
+        string dbColValue = string.Empty;
+
+        if (dataType == "nvarchar")
+            dbColValue = reader.GetString(reader.GetOrdinal(columnName)) as string ?? string.Empty;
+        else if (dataType == "datetime")
+            dbColValue = reader.GetDateTime(reader.GetOrdinal(columnName)).ToString("dd MMM yyyy");
+        else if (dataType == "money")
+            dbColValue = reader.GetDecimal(reader.GetOrdinal(columnName)).ToString("C");
+        else
+            dbColValue = "Unknown [" + dataType + "]";
+
+        return dbColValue;
+
+    }
 }
